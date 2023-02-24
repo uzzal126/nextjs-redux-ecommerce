@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeProduct, toggleMiniCart } from "../../service/cartSlice";
+import {
+    removeProduct,
+    toggleMiniCart,
+    getTotalPrice,
+} from "../../service/cartSlice";
 
 const MiniCart = () => {
     const { isMiniCartOpen, cart, totalPrice } = useSelector(
         (state) => state.cart
     );
+
     const dispatch = useDispatch();
 
     const hideMiniCartHandler = () => {
@@ -14,6 +20,10 @@ const MiniCart = () => {
     const productRemoveHandler = (id) => {
         dispatch(removeProduct(id));
     };
+
+    useEffect(() => {
+        dispatch(getTotalPrice());
+    }, [cart]);
 
     return (
         <div
@@ -49,16 +59,19 @@ const MiniCart = () => {
                                         alt={product.title}
                                     />
                                 </div>
-                                <div className="pl-3 pr-7">
+                                <div className="pl-3 pr-10">
                                     <h5 className="mb-2">{product.title}</h5>
-                                    <h6>1 x ${product.price}</h6>
+                                    <h6>
+                                        {product.qty} x ${product.price}
+                                    </h6>
                                 </div>
-                                <div className=" absolute right-0 top-1/2 -translate-y-1/2">
+                                <div className="absolute right-0 top-0">
                                     <button
                                         type="button"
                                         onClick={() =>
                                             productRemoveHandler(product.id)
                                         }
+                                        className="w-7 h-7 rounded-full text-center hover:bg-primary hover:text-white"
                                     >
                                         X
                                     </button>
@@ -67,10 +80,10 @@ const MiniCart = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="flex justify-between">
-                    <h4>Total:</h4>
-                    <h4>${totalPrice.toFixed(2)}</h4>
-                </div>
+            </div>
+            <div className="flex justify-between">
+                <h4>Total:</h4>
+                <h4>${totalPrice.toFixed(2)}</h4>
             </div>
         </div>
     );

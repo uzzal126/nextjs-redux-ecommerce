@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
 
     const addToCartHandler = () => {
-        dispatch(addToCart({ ...product, qty: 1 }));
+        dispatch(addToCart(product));
     };
 
     return (

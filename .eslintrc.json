@@ -28,6 +28,7 @@
         "import/prefer-default-export": "off",
         "no-param-reassign": "off",
         "react-hooks/exhaustive-deps": "off",
+        "import/no-extraneous-dependencies": "off",
         "import/extensions": [
             "error",
             "ignorePackages",

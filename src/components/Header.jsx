@@ -11,6 +11,9 @@ const Header = () => {
                     <li className="mr-10 text-lg font-medium hover:text-primary">
                         <Link href="/about">About</Link>
                     </li>
+                    <li className="mr-10 text-lg font-medium hover:text-primary">
+                        <Link href="/cart">Cart</Link>
+                    </li>
                 </ul>
             </div>
         </div>

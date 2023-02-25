@@ -36,10 +36,38 @@ export const cartSlice = createSlice({
                 0
             );
         },
+
+        increaseProductQuantity: (state, action) => {
+            const productIndex = state.cart.findIndex(
+                (item) => item.id === action.payload
+            );
+
+            if (productIndex !== -1) {
+                state.cart[productIndex].qty += 1;
+            }
+        },
+        decreaseProductQuantity: (state, action) => {
+            const productIndex = state.cart.findIndex(
+                (item) => item.id === action.payload
+            );
+
+            if (productIndex !== -1) {
+                if (state.cart[productIndex].qty === 1) {
+                    return;
+                }
+                state.cart[productIndex].qty -= 1;
+            }
+        },
     },
 });
 
-export const { toggleMiniCart, addToCart, removeProduct, getTotalPrice } =
-    cartSlice.actions;
+export const {
+    toggleMiniCart,
+    addToCart,
+    removeProduct,
+    getTotalPrice,
+    increaseProductQuantity,
+    decreaseProductQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

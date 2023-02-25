@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    removeProduct,
-    toggleMiniCart,
-    getTotalPrice,
-} from "../../service/cartSlice";
+import { toggleMiniCart, getTotalPrice } from "../../service/cartSlice";
+import MiniCartProductItem from "./MiniCartProductItem";
 
 const MiniCart = () => {
     const { isMiniCartOpen, cart, totalPrice } = useSelector(
@@ -15,10 +12,6 @@ const MiniCart = () => {
 
     const hideMiniCartHandler = () => {
         dispatch(toggleMiniCart(false));
-    };
-
-    const productRemoveHandler = (id) => {
-        dispatch(removeProduct(id));
     };
 
     useEffect(() => {
@@ -46,40 +39,9 @@ const MiniCart = () => {
                 </div>
             </div>
             <div className="product-list">
-                <ul>
-                    {cart.map((product) => (
-                        <li
-                            className="mini-cart-item relative mb-5 pb-5 border-b"
-                            key={product.id}
-                        >
-                            <div className="flex ">
-                                <div className="w-20 h-20 overflow-hidden">
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                    />
-                                </div>
-                                <div className="pl-3 pr-10">
-                                    <h5 className="mb-2">{product.title}</h5>
-                                    <h6>
-                                        {product.qty} x ${product.price}
-                                    </h6>
-                                </div>
-                                <div className="absolute right-0 top-0">
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            productRemoveHandler(product.id)
-                                        }
-                                        className="w-7 h-7 rounded-full text-center hover:bg-primary hover:text-white"
-                                    >
-                                        X
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                {cart.map((product) => (
+                    <MiniCartProductItem key={product.id} product={product} />
+                ))}
             </div>
             <div className="flex justify-between">
                 <h4>Total:</h4>

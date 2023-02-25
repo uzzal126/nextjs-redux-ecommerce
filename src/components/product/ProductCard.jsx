@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
     return (
         <div className="product-card border">
             <div className="p-5 h-72 overflow-hidden">
-                <Link href="/">
+                <Link href={`/product/${product.id}`}>
                     <img
                         src={product.image}
                         alt={product.title}
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
             </div>
             <div className="p-5">
                 <h4 className="mb-1.5 hover:text-primary">
-                    <Link href="/">{product.title}</Link>
+                    <Link href={`/product/${product.id}`}>{product.title}</Link>
                 </h4>
                 <h5 className="text-red-700 mb-2">${product.price}</h5>
                 <Button className="py-1.5" clickHandler={addToCartHandler}>

@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
         const response = await axios.get(
             `${process.env.NEXT_PUBLIC_API_URL}/products`
         );
-        return response.data;
+        return response.data.products;
     }
 );
 
@@ -36,6 +36,7 @@ export const productSlice = createSlice({
         });
 
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            // state.isLoading = false;
             state.products = action.payload;
         });
 
@@ -43,7 +44,10 @@ export const productSlice = createSlice({
             state.isLoading = true;
         });
         builder.addCase(fetchProduct.fulfilled, (state, action) => {
+            // console.log("first >>", action.payload);
+            state.isLoading = false;
             state.product = action.payload;
+            // console.log("second >>", action.payload);
         });
     },
 });

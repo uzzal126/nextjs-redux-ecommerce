@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { toggleMiniCart, getTotalPrice } from "../../service/cartSlice";
 import MiniCartProductItem from "./MiniCartProductItem";
 
@@ -55,7 +55,7 @@ const MiniCart = () => {
                     </h6>
                 </div>
             </div>
-            <ToastContainer transition={Slide} autoClose={2000} />
+            <ToastContainer />
         </>
     );
 };

@@ -11,7 +11,7 @@ const MiniCartProductItem = ({ product }) => {
         <div className="mini-cart-item relative mb-5 pb-5 border-b">
             <div className="flex ">
                 <div className="w-20 h-20 overflow-hidden">
-                    <img src={product.image} alt={product.title} />
+                    <img src={product.thumbnail} alt={product.title} />
                 </div>
                 <div className="pl-3 pr-10">
                     <h5 className="mb-2">{product.title}</h5>

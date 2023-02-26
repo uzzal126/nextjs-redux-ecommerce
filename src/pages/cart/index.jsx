@@ -79,7 +79,7 @@ const CartView = () => {
                                             <td className="px-6 py-4">
                                                 <div className="w-24 h-20 overflow-hidden">
                                                     <img
-                                                        src={product.image}
+                                                        src={product.thumbnail}
                                                         alt={product.title}
                                                     />
                                                 </div>

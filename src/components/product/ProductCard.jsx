@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { addToCart } from "../../service/cartSlice";
+import { addToWishlist } from "../../service/wishlistSlice";
 import Button from "../elements/Button";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -13,12 +14,16 @@ const ProductCard = ({ product }) => {
         dispatch(addToCart(product));
     };
 
+    const addToWishlistHandler = () => {
+        dispatch(addToWishlist(product));
+    };
+
     return (
         <div className="product-card border">
             <div className="p-5 h-72 overflow-hidden">
                 <Link href={`/product/${product.id}`}>
                     <img
-                        src={product.image}
+                        src={product.thumbnail}
                         alt={product.title}
                         className="w-full"
                     />
@@ -29,10 +34,18 @@ const ProductCard = ({ product }) => {
                     <Link href={`/product/${product.id}`}>{product.title}</Link>
                 </h4>
                 <h5 className="text-red-700 mb-2">${product.price}</h5>
-                <Button className="py-1.5" clickHandler={addToCartHandler}>
-                    Add to cart
-                </Button>
-                <ToastContainer transition={Slide} autoClose={2000} />
+                <div className="flex space-x-2">
+                    <Button className="py-1.5" clickHandler={addToCartHandler}>
+                        Add to cart
+                    </Button>
+                    <Button
+                        className="py-1.5"
+                        clickHandler={addToWishlistHandler}
+                    >
+                        Add to wishlist
+                    </Button>
+                    <ToastContainer />
+                </div>
             </div>
         </div>
     );

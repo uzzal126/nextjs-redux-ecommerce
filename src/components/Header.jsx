@@ -14,6 +14,9 @@ const Header = () => {
                     <li className="mr-10 text-lg font-medium hover:text-primary">
                         <Link href="/cart">Cart</Link>
                     </li>
+                    <li className="mr-10 text-lg font-medium hover:text-primary">
+                        <Link href="/wishlist">Wishlist</Link>
+                    </li>
                 </ul>
             </div>
         </div>

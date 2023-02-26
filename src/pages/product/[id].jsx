@@ -9,7 +9,7 @@ const ProductDetails = () => {
 
     const dispatch = useDispatch();
     const { product, isLoading } = useSelector((state) => state.products);
-    const { image, title, price } = product;
+    const { thumbnail, title, price } = product;
 
     useEffect(() => {
         dispatch(fetchProduct(id));
@@ -19,11 +19,13 @@ const ProductDetails = () => {
         <div className="product-details">
             <div className="container">
                 <h3>This is product details page - {id}</h3>
-                {isLoading && (
+                {isLoading ? (
+                    <p>Loading data...</p>
+                ) : (
                     <div className="grid grid-cols-12">
                         <div className="col-span-6">
                             <div className="thumb">
-                                <img src={image} alt={title} />
+                                <img src={thumbnail} alt={title} />
                             </div>
                         </div>
                         <div className="col-span-6">

@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { useDispatch } from "react-redux";
+import { ToastContainer, Slide } from "react-toastify";
 import { addToCart } from "../../service/cartSlice";
 import Button from "../elements/Button";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
@@ -29,6 +32,7 @@ const ProductCard = ({ product }) => {
                 <Button className="py-1.5" clickHandler={addToCartHandler}>
                     Add to cart
                 </Button>
+                <ToastContainer transition={Slide} autoClose={2000} />
             </div>
         </div>
     );
